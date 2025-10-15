@@ -1,0 +1,33 @@
+﻿@model SupplierModel
+@{
+    ViewData["Title"] = "Create Supplier";
+}
+<h3>Thêm nhà cung cấp</h3>
+<form asp-controller="Supplier" asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label class="form-label">Tên</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Địa chỉ</label>
+        <input asp-for="Address" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">SĐT</label>
+        <input asp-for="Phone" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Lưu</button>
+    <a asp-action="Index" asp-controller="Supplier" class="btn btn-secondary">Quay lại</a>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

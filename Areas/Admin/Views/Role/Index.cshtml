@@ -1,0 +1,30 @@
+﻿@model IEnumerable<IdentityRole>
+@{
+    ViewData["Title"] = "Danh sách vai trò hạn";
+}
+<h3>Danh sách vai trò</h3>
+<a asp-action="Create" class="btn btn-primary mb-3">Thêm vai trò</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Tên vai trò</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model)
+        {
+            <tr>
+                <td>@role.Name</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@role.Id" class="btn btn-warning btn-sm">Sửa</a>
+
+                    <form asp-action="Delete" asp-route-id="@role.Id" method="post" style="display:inline">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Xoá quyền?')">Xoá</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

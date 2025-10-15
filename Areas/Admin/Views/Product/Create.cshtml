@@ -1,0 +1,50 @@
+﻿@model ProductModel
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Create Product</h1>
+    <a class="btn btn-primary" asp-controller="Product" asp-action="Index">List Product</a>
+    <form asp-controller="Product" asp-action="Create" method="POST">
+        @Html.AntiForgeryToken()
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Product Code</label>
+            <input type="text" asp-for="ProductCode" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <span asp-validation-for="ProductCode" class="text text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Product Name</label>
+            <input type="text" asp-for="ProductName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <span asp-validation-for="ProductName" class="text text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Product Description</label>
+            <input type="text" asp-for="ProductDescription" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <span asp-validation-for="ProductDescription" class="text text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Product Quantity</label>
+            <input type="text" asp-for="ProductQuantity" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <span asp-validation-for="ProductQuantity" class="text text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Product Location</label>
+            <input type="text" asp-for="Location" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <span asp-validation-for="Location" class="text text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <select class="form-select" asp-for="ProductUnit" aria-label="Default select example">
+
+                <option value="cái">Cái</option>
+                <option value="thùng">Thùng</option>
+                <option value="bịch">Bịch</option>
+            </select>
+            <span asp-validation-for="ProductUnit" class="text text-danger"></span>
+         <div>
+        <button type="submit" class="btn btn-primary">Lưu</button>
+    </form>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

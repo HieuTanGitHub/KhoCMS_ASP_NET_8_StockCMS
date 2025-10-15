@@ -1,0 +1,25 @@
+﻿@model UserEditViewModel
+@{
+    ViewData["Title"] = "Edit User";
+}
+<h3>Cập nhật người quản lý</h3>
+<form asp-controller="User" asp-action="Edit" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label class="form-label">Tên</label>
+        <input readonly asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password mới(nếu có)</label>
+        <input asp-for="NewPassword" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Lưu</button>
+    <a asp-action="Index" asp-controller="User" class="btn btn-secondary">Quay lại</a>
+</form>
+@* @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+} *@

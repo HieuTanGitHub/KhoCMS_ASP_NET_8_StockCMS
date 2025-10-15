@@ -1,0 +1,29 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Đăng nhập tài khoản CMS";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Đăng nhập tài khoản</h1>
+    <form method="post" asp-controller="Account" asp-action="Login">
+        @Html.AntiForgeryToken()
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" asp-for="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" asp-for="Password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" asp-for="RememberMe" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label"  for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+    </form>
+   
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

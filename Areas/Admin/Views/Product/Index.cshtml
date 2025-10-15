@@ -1,0 +1,72 @@
+﻿@model X.PagedList.IPagedList<ProductModel>
+@using X.PagedList.Mvc.Core
+@{
+    ViewData["Title"] = "List Product";
+}
+
+<div class="text-center">
+    <h1 class="display-4">List Product</h1>
+    <a class="btn btn-primary" asp-controller="Product" asp-action="Create">Create Product</a>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Mã SP</th>
+                <th>Tên sản phẩm</th>
+                <th>Đơn vị</th>
+                <th>Số lượng</th>
+                <th>Vị trí</th>
+                <th>Ghi chú</th>
+                <th>Ngày tạo</th>
+                <th>Ngày cập nhật</th>
+                <th>Quản lý</th>
+            </tr>
+        </thead>
+        <tbody>
+             @if (Model != null && Model.Any())
+                {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.ProductCode</td>
+                        <td>@item.ProductName</td>
+                        <td>@item.ProductUnit</td>
+                        <td>@item.ProductQuantity</td>
+                        <td>@item.Location</td>
+                        <td>@item.ProductDescription</td>
+                        <td>@item.CreateDate.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@item.UpdateDate.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>
+                            <a class="btn btn-sm btn-primary" href="@Url.Action("Edit", "Product", new { id = item.Id })">Edit</a>
+
+                            <form asp-action="Delete" asp-controller="Product" asp-route-id="@item.Id" method="post" style="display:inline" onsubmit="return confirm('Bạn có chắc muốn xoá sản phẩm này?');">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="9" class="text-center text-danger">Không có sản phẩm nào.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }) ,
+            new PagedListRenderOptions
+    {
+        LiElementClasses = new[] { "page-item" },  
+        PageClasses = new[] { "page-link" },
+        UlElementClasses = new[] { "pagination" },
+
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always, 
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always
+    }
+    
+    )
+</div>

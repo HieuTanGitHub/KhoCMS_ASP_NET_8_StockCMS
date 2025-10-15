@@ -1,0 +1,13 @@
+﻿@model IdentityRole
+@{
+    ViewData["Title"] = "Cập nhật vai trò";
+}
+<form asp-action="Edit" asp-controller="Role" method="post">
+    <div asp-validation-summary="All" class="text text-danger"></div>
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label class="form-label">Tên vai trò</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Lưu</button>
+</form>

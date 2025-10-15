@@ -1,0 +1,36 @@
+﻿@model List<UserWithRolesViewModel>
+@{
+    ViewData["Title"] = "Quản lý người dùng";
+}
+<h2>Quản lý người dùng</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Quyền</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.User.Email</td>
+                <td>
+                    @if (item.Roles.Any())
+                    {
+                        @string.Join(", ", item.Roles)
+                    }
+                    else
+                    {
+                        <span class="text-muted">Không có</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Manage" asp-route-userId="@item.User.Id" class="btn btn-primary">Gán vai trò</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

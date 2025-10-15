@@ -1,0 +1,42 @@
+﻿@model WarehouseTransactionModel
+@{
+    ViewData["Title"] = "Nhập sản phẩm trong kho";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Nhập sản phẩm trong kho</h1>
+    <a class="btn btn-primary" asp-controller="Warehouse" asp-action="ImportIndex">List</a>
+
+
+    <form asp-area="Admin" asp-action="Import" asp-controller="Warehouse" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="All" class="text text-danger"></div>
+        <div class="mb-3">
+            <label class="form-label">Sản phẩm</label>
+            <select asp-for="ProductId" class="form-control" asp-items="ViewBag.Products">
+                <option value="">-- Chọn sản phẩm --</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Nhà cung cấp</label>
+            <select asp-for="SupplierId" class="form-control" asp-items="ViewBag.Suppliers">
+                <option value="">-- Chọn nhà cung cấp --</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Số lượng nhập</label>
+            <input asp-for="Quantity" class="form-control" />
+            <span asp-validation-for="Quantity" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Ghi chú</label>
+            <input asp-for="Notes" class="form-control" />
+            <span asp-validation-for="Notes" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success">Lưu</button>
+
+    </form>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

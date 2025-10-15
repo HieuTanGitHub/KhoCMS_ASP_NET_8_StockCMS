@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WarehouseTransactionModel>
+@{
+    ViewData["Title"] = "Danh sách nhập kho";
+}
+
+<h2>Danh sách nhập kho</h2>
+<a class="btn btn-primary" asp-controller="Warehouse" asp-action="Import">Create</a>
+
+<a asp-action="ExportToExcel" asp-controller="Warehouse" class="btn btn-warning">Danh sách Excel</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>Tên sản phẩm</th>
+            <th>Nhà cung cấp</th>
+            <th>Số lượng nhập</th>
+            <th>Ngày nhập</th>
+            <th>Ghi chú</th>
+            <th>Tình trạng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            int stt = 1;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>@item.Product?.ProductName</td>
+                    <td>@item.Supplier?.Name</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.TransactionDate.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@item.Notes</td>
+                    <td>@item.TransactionType</td>
+                </tr>
+                stt++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">Không có dữ liệu.</td>
+            </tr>
+        }
+    </tbody>
+</table>

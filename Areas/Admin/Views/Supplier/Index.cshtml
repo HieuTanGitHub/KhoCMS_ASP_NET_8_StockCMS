@@ -1,0 +1,40 @@
+﻿@model List<SupplierModel>
+@{
+    ViewData["Title"] = "List Supplier";
+}
+
+<div class="text-center">
+    <h1 class="display-4">List Supplier</h1>
+    <a class="btn btn-primary" asp-controller="Supplier" asp-action="Create">Create Supplier</a>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Tên</th>
+                <th>Địa chỉ</th>
+                <th>Điện thoại</th>
+                <th>Email</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td>@s.Name</td>
+                    <td>@s.Address</td>
+                    <td>@s.Phone</td>
+                    <td>@s.Email</td>
+                    <td>
+
+                        <a asp-action="Edit" asp-route-id="@s.Id" class="btn btn-sm btn-warning">Sửa</a>
+
+                        <form asp-action="Delete" asp-route-id="@s.Id" method="post" style="display:inline;"
+                              onsubmit="return confirm('Xác nhận xoá?');">
+                            <button type="submit" class="btn btn-sm btn-danger">Xoá</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

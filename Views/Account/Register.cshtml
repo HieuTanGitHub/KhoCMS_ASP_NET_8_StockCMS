@@ -1,0 +1,29 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Đăng ký tài khoản CMS";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Đăng ký tài khoản mới</h1>
+    <form asp-controller="Account" asp-action="Register" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" asp-for="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" asp-for="Password" class="form-control">
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+      
+        <button type="submit" class="btn btn-primary">Đăng ký</button>
+    </form>
+
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
